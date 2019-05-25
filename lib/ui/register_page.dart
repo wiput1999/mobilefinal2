@@ -145,14 +145,13 @@ class RegisterPageState extends State<RegisterPage> {
                     for (var i = 0; i < userList.length; i++) {
                       if (user.userid == userList[i].userid) {
                         this.isUserIn = true;
-                        break;
+                        return;
                       }
                     }
                   }
 
                   //call function
                   await isNewUserIn(userData);
-                  print(this.isUserIn);
 
                   //validate form
                   if (_formkey.currentState.validate()) {
@@ -165,20 +164,10 @@ class RegisterPageState extends State<RegisterPage> {
                       repassword.text = "";
                       await user.insertUser(userData);
                       Navigator.pop(context);
-                      print('insert complete');
                     }
                   }
 
                   this.isUserIn = false;
-
-                  Future showAllUser() async {
-                    var userList = await allUser;
-                    for (var i = 0; i < userList.length; i++) {
-                      print(userList[i]);
-                    }
-                  }
-
-                  showAllUser();
                 }),
           ],
         ),

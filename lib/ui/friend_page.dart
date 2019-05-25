@@ -19,10 +19,9 @@ Future<List<User>> fetchUsers() async {
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
     var body = json.decode(response.body);
-    for (int i = 0; i < body.length; i++) {
-      var user = User.fromJson(body[i]);
-      userApi.add(user);
-    }
+
+    body.forEach((b) => userApi.add(User.fromJson(b)));
+
     return userApi;
   } else {
     // If that call was not successful, throw an error.
@@ -122,7 +121,10 @@ class FriendPageState extends State<FriendPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>TodoPage(id: values[index].id),
+                    builder: (context) => TodoPage(
+                          id: values[index].id,
+                          name: values[index].name,
+                        ),
                   ),
                 );
               },

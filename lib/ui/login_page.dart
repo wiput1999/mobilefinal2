@@ -19,8 +19,8 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
   UserUtils user = UserUtils();
-  final userid = TextEditingController();
-  final password = TextEditingController();
+  final useridController = TextEditingController();
+  final passwordController = TextEditingController();
   bool isValid = false;
   int formState = 0;
 
@@ -114,7 +114,7 @@ class LoginPageState extends State<LoginPage> {
                   labelText: "UserId",
                   icon: Icon(Icons.account_box, size: 40, color: Colors.grey),
                 ),
-                controller: userid,
+                controller: useridController,
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value.isNotEmpty) {
@@ -126,7 +126,7 @@ class LoginPageState extends State<LoginPage> {
                   labelText: "Password",
                   icon: Icon(Icons.lock, size: 40, color: Colors.grey),
                 ),
-                controller: password,
+                controller: passwordController,
                 obscureText: true,
                 keyboardType: TextInputType.text,
                 validator: (value) {
@@ -170,14 +170,14 @@ class LoginPageState extends State<LoginPage> {
                   this.formState = 0;
                 } else {
                   this.formState = 0;
-                  await isUserValid(userid.text, password.text);
+                  await isUserValid(useridController.text, passwordController.text);
                   if (!this.isValid) {
                     Toast.show("Invalid user or password", context,
                         duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
                   } else {
                     Navigator.pushReplacementNamed(context, '/home');
-                    userid.text = "";
-                    password.text = "";
+                    useridController.text = "";
+                    passwordController.text = "";
                   }
                 }
               },

@@ -12,10 +12,7 @@ Future<List<Todo>> fetchTodos(int userid) async {
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
     var body = json.decode(response.body);
-    for (int i = 0; i < body.length; i++) {
-      var todo = Todo.fromJson(body[i]);
-        todoApi.add(todo);
-    }
+    body.forEach((b) => todoApi.add(Todo.fromJson(b)));
     return todoApi;
   } else {
     // If that call was not successful, throw an error.
@@ -44,8 +41,9 @@ class Todo {
 class TodoPage extends StatelessWidget {
   // Declare a field that holds the Todo
   final int id;
+  final String name;
   // In the constructor, require a Todo
-  TodoPage({Key key, @required this.id}) : super(key: key);
+  TodoPage({Key key, @required this.id, @required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +51,7 @@ class TodoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Todos"),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(
