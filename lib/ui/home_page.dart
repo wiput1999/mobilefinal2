@@ -92,6 +92,7 @@ class HomePageState extends State<HomePage> {
                 }
 
                 clearSharedPreferences();
+                writeContent('');
 
                 CurrentUser.userId = null;
                 CurrentUser.name = null;
