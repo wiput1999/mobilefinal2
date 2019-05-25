@@ -44,7 +44,6 @@ class HomePageState extends State<HomePage> {
       return this._data;
     } catch (e) {
       // If there is an error reading, return a default String
-      print('error!');
       return '';
     }
   }
