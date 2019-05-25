@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobilefinal2/ui/todo_page.dart';
 import 'dart:convert';
 import 'dart:async';
-import './myfriend_page.dart';
 
 class FriendPage extends StatefulWidget {
   @override
@@ -122,8 +122,7 @@ class FriendPageState extends State<FriendPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyfriendPage(
-                        id: values[index].id, name: values[index].name),
+                    builder: (context) =>TodoPage(id: values[index].id),
                   ),
                 );
               },

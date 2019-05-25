@@ -5,7 +5,7 @@ import 'dart:async';
 
 Future<List<Todo>> fetchTodos(int userid) async {
   final response = await http
-      .get('https://jsonplaceholder.typicode.com/users/$userid/todos');
+      .get('https://jsonplaceholder.typicode.com/todos?userId=$userid');
 
   List<Todo> todoApi = [];
 
@@ -14,9 +14,7 @@ Future<List<Todo>> fetchTodos(int userid) async {
     var body = json.decode(response.body);
     for (int i = 0; i < body.length; i++) {
       var todo = Todo.fromJson(body[i]);
-      if (todo.userid == userid) {
         todoApi.add(todo);
-      }
     }
     return todoApi;
   } else {
